@@ -1,0 +1,13 @@
+{
+  "projects": {},
+  "targets": {
+    "apati-paseo-perro-pre": {
+      "hosting": {
+        "apati-paseo-perro": [
+          "apati-paseo-perro-pre"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
