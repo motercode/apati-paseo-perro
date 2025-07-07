@@ -3,10 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:apati_paseo_perro/features/walks/domain/models/walk_model.dart';
 
 class DatabaseService {
-  static final DatabaseService instance = DatabaseService._init();
-  static Database? _database;
-
-  DatabaseService._init();
+  Database? _database;
 
   Future<Database> get database async {
     if (_database != null) return _database!;
@@ -24,7 +21,6 @@ class DatabaseService {
   Future _createDB(Database db, int version) async {
     const idType = 'TEXT PRIMARY KEY';
     const textType = 'TEXT NOT NULL';
-    const integerType = 'INTEGER NOT NULL';
 
     await db.execute('''
 CREATE TABLE walks ( 
@@ -36,16 +32,14 @@ CREATE TABLE walks (
 ''');
   }
 
-  // Aquí añadiremos los métodos para CRUD (Create, Read, Update, Delete)
-
   Future<Walk> create(Walk walk) async {
-    final db = await instance.database;
+    final db = await database;
     await db.insert('walks', walk.toJson());
     return walk;
   }
 
   Future<Walk> read(String id) async {
-    final db = await instance.database;
+    final db = await database;
     final maps = await db.query(
       'walks',
       columns: ['id', 'startTime', 'endTime', 'notes'],
@@ -61,7 +55,7 @@ CREATE TABLE walks (
   }
 
   Future<List<Walk>> readAll() async {
-    final db = await instance.database;
+    final db = await database;
     const orderBy = 'startTime DESC';
     final result = await db.query('walks', orderBy: orderBy);
 
@@ -69,7 +63,7 @@ CREATE TABLE walks (
   }
 
   Future<int> update(Walk walk) async {
-    final db = await instance.database;
+    final db = await database;
     return db.update(
       'walks',
       walk.toJson(),
@@ -79,7 +73,7 @@ CREATE TABLE walks (
   }
 
   Future<int> delete(String id) async {
-    final db = await instance.database;
+    final db = await database;
     return await db.delete(
       'walks',
       where: 'id = ?',
@@ -88,7 +82,7 @@ CREATE TABLE walks (
   }
 
   Future close() async {
-    final db = await instance.database;
+    final db = await database;
     db.close();
   }
 }

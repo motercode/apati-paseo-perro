@@ -6,7 +6,9 @@ import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 class WalkFormScreen extends StatefulWidget {
-  const WalkFormScreen({super.key});
+  final DatabaseService databaseService;
+
+  const WalkFormScreen({super.key, required this.databaseService});
 
   @override
   State<WalkFormScreen> createState() => _WalkFormScreenState();
@@ -60,7 +62,7 @@ class _WalkFormScreenState extends State<WalkFormScreen> {
         notes: _notesController.text,
       );
 
-      await DatabaseService.instance.create(newWalk);
+      await widget.databaseService.create(newWalk);
 
       if (mounted) {
         Navigator.pop(context);
