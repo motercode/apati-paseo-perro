@@ -39,9 +39,11 @@ Mi trabajo se centra en completar las tareas definidas como una checklist en un 
     *   Asigno un nombre corto y descriptivo a la tarea (ej: `db-setup`).
     *   Creo una nueva rama de Git a partir de la rama de la feature principal, usando el formato `task/<nombre-corto>`.
 3.  **Anotación en GitHub (Automatizada):**
-    *   Usando la CLI de GitHub (`gh`), edito el cuerpo del Issue para actualizar la línea de la tarea.
-    *   Añado el nombre de la tarea entre paréntesis y la fecha/hora de inicio entre corchetes.
-    *   Formato: `- [ ] Descripción de la tarea (nombre-corto) [iniciado: dd/MM/yy HH:mm]`
+    *   Leo el cuerpo del Issue con `gh issue view <ID> --json body -jq .body`.
+    *   Modifico el contenido localmente para actualizar la línea de la tarea con su nombre y fecha/hora de inicio.
+    *   Creo un archivo temporal (ej: `issue_update.txt`) con el nuevo contenido.
+    *   Ejecuto `gh issue edit <ID> -F issue_update.txt` para actualizar el issue de forma segura.
+    *   Formato de línea: `- [ ] Descripción de la tarea (nombre-corto) [iniciado: dd/MM/yy HH:mm]`
 
 **Fase 2: Desarrollo**
 
@@ -56,7 +58,8 @@ Mi trabajo se centra en completar las tareas definidas como una checklist en un 
 6.  **Pull Request (PR):** Una vez la tarea está completa y los tests locales pasan, creo un PR para fusionar mi rama de tarea (`task/<nombre-corto>`) con la rama de la feature (`feature/...`).
 7.  **Revisión de Código:** Atiendo a los comentarios del PR.
 8.  **Anotación Final en GitHub (Automatizada):**
-    *   Una vez el PR es **aprobado y fusionado**, uso la CLI de GitHub (`gh`) para editar el Issue de nuevo.
+    *   Una vez el PR es **aprobado y fusionado**, repito el proceso de anotación:
+    *   Leo el cuerpo del issue, lo modifico localmente, lo guardo en un archivo y lo subo con `gh issue edit <ID> -F <archivo>`.
     *   Añado la fecha/hora de finalización y marco la tarea como completada.
-    *   Formato: `- [x] Descripción de la tarea (nombre-corto) [iniciado: dd/MM/yy HH:mm] [finalizado: dd/MM/yy HH:mm]`
+    *   Formato de línea: `- [x] Descripción de la tarea (nombre-corto) [iniciado: dd/MM/yy HH:mm] [finalizado: dd/MM/yy HH:mm]`
 
