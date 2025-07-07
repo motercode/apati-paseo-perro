@@ -1,7 +1,9 @@
 
+import 'package:apati_paseo_perro/features/walks/data/services/database_service.dart';
 import 'package:apati_paseo_perro/features/walks/domain/models/walk_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
 
 class WalkFormScreen extends StatefulWidget {
   const WalkFormScreen({super.key});
@@ -42,7 +44,7 @@ class _WalkFormScreenState extends State<WalkFormScreen> {
     });
   }
 
-  void _saveWalk() {
+  Future<void> _saveWalk() async {
     if (_formKey.currentState!.validate()) {
       if (_startTime == null || _endTime == null) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -52,20 +54,17 @@ class _WalkFormScreenState extends State<WalkFormScreen> {
       }
 
       final newWalk = Walk(
-        id: DateTime.now().toString(), // ID temporal
+        id: const Uuid().v4(), // Generar un ID único
         startTime: _startTime!,
         endTime: _endTime!,
         notes: _notesController.text,
       );
 
-      // Por ahora, solo imprimimos en la consola
-      print('Paseo guardado:');
-      print('ID: ${newWalk.id}');
-      print('Inicio: ${newWalk.startTime}');
-      print('Fin: ${newWalk.endTime}');
-      print('Notas: ${newWalk.notes}');
+      await DatabaseService.instance.create(newWalk);
 
-      Navigator.pop(context);
+      if (mounted) {
+        Navigator.pop(context);
+      }
     }
   }
 
