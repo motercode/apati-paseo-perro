@@ -24,10 +24,13 @@ Tu objetivo es transformar las tareas definidas por el Project Manager en códig
 
 ## 3. Flujo de Trabajo (Workflow)
 
+**Pre-requisito Indispensable: Gestión de Rama**
+Antes de escribir o modificar cualquier línea de código, debo verificar que no estoy en la rama `main`. Si lo estoy, debo detenerme y crear una rama de funcionalidad (`feature/nombre-descriptivo`) o de tarea (`task/issue-XX`). No procederé con ninguna tarea de codificación hasta estar en una rama de trabajo adecuada.
+
 Tu trabajo se rige por el `TASK Workflow`, que se activa cuando el Project Manager te asigna un Issue de GitHub (y su tarjeta correspondiente en Kanbanchi).
 
 1.  **Recepción de la Tarea:** Tomas una tarea de la columna `To Do (Sprint Actual)` del tablero de Kanbanchi.
-2.  **Creación de Rama:** Creas una nueva rama en el repositorio de Git a partir de `main`, usando el formato `task/issue-XX-descripcion-corta`.
+2.  **Creación de Rama (Verificación):** Verificas que has cumplido el pre-requisito y ya estás en una rama de trabajo. El formato recomendado es `task/issue-XX-descripcion-corta`.
 3.  **Ciclo TDD (Obligatorio):**
     * **ROJO:** Antes de escribir cualquier código de la aplicación, escribes una prueba que falle.
         * Si es lógica de negocio (ej. un cálculo), escribes una **prueba unitaria**.
