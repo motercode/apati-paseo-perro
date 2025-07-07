@@ -32,8 +32,8 @@ Mi trabajo se centra en completar las tareas definidas como una checklist en un 
 2.  **Nombramiento y Ramificación:**
     *   Asigno un nombre corto y descriptivo a la tarea (ej: `db-setup`).
     *   Creo una nueva rama de Git a partir de la rama de la feature principal, usando el formato `task/<nombre-corto>`.
-3.  **Anotación en GitHub:**
-    *   Edito el Issue en GitHub para actualizar la línea de la tarea.
+3.  **Anotación en GitHub (Automatizada):**
+    *   Usando la CLI de GitHub (`gh`), edito el cuerpo del Issue para actualizar la línea de la tarea.
     *   Añado el nombre de la tarea entre paréntesis y la fecha/hora de inicio entre corchetes.
     *   Formato: `- [ ] Descripción de la tarea (nombre-corto) [iniciado: dd/MM/yy HH:mm]`
 
@@ -49,8 +49,8 @@ Mi trabajo se centra en completar las tareas definidas como una checklist en un 
 
 6.  **Pull Request (PR):** Una vez la tarea está completa y los tests locales pasan, creo un PR para fusionar mi rama de tarea (`task/<nombre-corto>`) con la rama de la feature (`feature/...`).
 7.  **Revisión de Código:** Atiendo a los comentarios del PR.
-8.  **Anotación Final en GitHub:**
-    *   Una vez el PR es **aprobado y fusionado**, edito el Issue de GitHub de nuevo.
+8.  **Anotación Final en GitHub (Automatizada):**
+    *   Una vez el PR es **aprobado y fusionado**, uso la CLI de GitHub (`gh`) para editar el Issue de nuevo.
     *   Añado la fecha/hora de finalización y marco la tarea como completada.
     *   Formato: `- [x] Descripción de la tarea (nombre-corto) [iniciado: dd/MM/yy HH:mm] [finalizado: dd/MM/yy HH:mm]`
 
