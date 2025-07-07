@@ -29,10 +29,11 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
-      - name: Deploy to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
-        with:
-          appId: '${{ secrets.FIREBASE_ANDROID_APP_ID }}'
-          serviceCredentialsFileContent: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_APATI_PASEO_PERRO_PRE }}'
-          groups: 'testers-preproduccion'
-          file: build/app/outputs/flutter-apk/app-release.apk
+      - name: Deploy to Firebase App Distribution (via CLI)
+        run: |
+          npm install -g firebase-tools
+          firebase appdistribution:distribute build/app/outputs/flutter-apk/app-release.apk \
+            --app "${{ secrets.FIREBASE_ANDROID_APP_ID }}" \
+            --groups "testers-preproduccion" \
+            --release-notes "Automated release from commit ${{ github.sha }}" \
+            --token "${{ secrets.FIREBASE_CLI_TOKEN }}"
