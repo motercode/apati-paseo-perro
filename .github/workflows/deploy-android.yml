@@ -33,6 +33,6 @@ jobs:
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: '${{ secrets.FIREBASE_ANDROID_APP_ID }}'
-          serviceCredentialsFile: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_APATI_PASEO_PERRO_PRE }}'
+          serviceCredentialsFileContent: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_APATI_PASEO_PERRO_PRE }}'
           groups: 'testers-preproduccion'
           file: build/app/outputs/flutter-apk/app-release.apk
