@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "target": "apati-paseo-perro",
+    "target": "apptiva-paseo-perro",
     "public": "build/web",
     "ignore": [
       "firebase.json",

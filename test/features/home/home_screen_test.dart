@@ -1,7 +1,6 @@
-import 'package:apati_paseo_perro/app/app.dart';
-import 'package:apati_paseo_perro/features/home/presentation/screens/home_screen.dart';
-import 'package:apati_paseo_perro/features/walks/data/services/database_service.dart';
-import 'package:apati_paseo_perro/features/walks/domain/models/walk_model.dart';
+import 'package:apptiva_paseo_perro/features/home/presentation/screens/home_screen.dart';
+import 'package:apptiva_paseo_perro/features/walks/data/services/database_service.dart';
+import 'package:apptiva_paseo_perro/features/walks/domain/models/walk_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

@@ -1,0 +1,122 @@
+{
+    "chat": {
+        "id": "c21ae92c-4353-4e33-a641-86c2cbea7083",
+        "user_id": "60d4bbc7-9b39-4c5f-a90c-c5e71de66a7e",
+        "title": "New Chat",
+        "chat": {
+            "id": "",
+            "title": "New Chat",
+            "models": [
+                "granite3.3:8b"
+            ],
+            "params": {},
+            "history": {
+                "messages": {
+                    "dbc2cc60-f609-4503-bccf-089c2238f265": {
+                        "id": "dbc2cc60-f609-4503-bccf-089c2238f265",
+                        "parentId": null,
+                        "childrenIds": [
+                            "e61e94bf-29cb-4968-a48a-6dcce37e3567"
+                        ],
+                        "role": "user",
+                        "content": "\u00bfcual es la formula culinaria de la tortilla espa\u00f1ola?",
+                        "timestamp": 1755026511,
+                        "models": [
+                            "granite3.3:8b"
+                        ]
+                    },
+                    "e61e94bf-29cb-4968-a48a-6dcce37e3567": {
+                        "parentId": "dbc2cc60-f609-4503-bccf-089c2238f265",
+                        "id": "e61e94bf-29cb-4968-a48a-6dcce37e3567",
+                        "childrenIds": [],
+                        "role": "assistant",
+                        "content": "La receta t\u00edpica de la Tortilla Espa\u00f1ola incluye los siguientes ingredientes:\n\n- 6-8 patatas medianas o 1 kg de patatas peque\u00f1as\n- Aceite de oliva (para fre\u00edr)\n- Sal\n- 6-8 huevos grandes\n\nAqu\u00ed est\u00e1 el proceso de preparaci\u00f3n paso a paso:\n\n1. Pela las patatas y c\u00fabselas en rodajas finas (de aproximadamente 3 mm).\n2. Calienta aceite de oliva virgen extra en una sart\u00e9n grande a fuego medio-bajo. A\u00f1ade las patatas y sazona con sal. Cocina lentamente, revolviendo ocasionalmente durante unos 15-20 minutos hasta que est\u00e9n suaves pero no doradas. Las patatas deben quedar tiernas pero mantener su forma.\n3. Retira la sart\u00e9n del fuego y d\u00e9jalas en un lado para evitar que las patatas contin\u00faen cocin\u00e1ndose con el exceso de calor. Deja que se templen un poco.\n4. En un taz\u00f3n grande, batir los huevos con un pizco de sal. A\u00f1ade las patatas cocidas y mezcla suavemente para combinar bien.\n5. Limpia la misma sart\u00e9n utilizada para fre\u00edr las patatas, pero esta vez sin a\u00f1adir aceite (solo una ligera resina). Calienta a fuego medio.\n6. Vierte la mezcla de huevo y patata en la sart\u00e9n caliente. Cocina durante unos 4-5 minutos o hasta que los bordes se doren y el centro siga algo l\u00edquido.\n7. Redondea la tortilla con la ayuda de un plato o una tapa del mismo tama\u00f1o que la sart\u00e9n para facilitar su volteo. Coloca un plato grande sobre la sart\u00e9n y, con una mano protegida con un pa\u00f1o o un par de guantes, invierte r\u00e1pidamente la tortilla al plato. Luego, vuelve a colocarla en la sart\u00e9n con el lado sin dorar hacia abajo.\n8. Cocina por el otro lado durante unos 3-4 minutos m\u00e1s, o hasta que est\u00e9 completamente cocida y dorada.\n9. Desgl\u00f3sale suavemente de la sart\u00e9n y transf\u00edrala a un plato. Deja que se enfr\u00ede un poco antes de servir.\n\nLa Tortilla Espa\u00f1ola se sirve tradicionalmente cortada en porciones, generalmente acompa\u00f1ada de una ensalada o pan. \u00a1Disfruta!",
+                        "model": "granite3.3:8b",
+                        "modelName": "granite3.3:8b",
+                        "modelIdx": 0,
+                        "timestamp": 1755026511,
+                        "lastSentence": "Deja que se enfr\u00ede un poco antes de servir. La Tortilla Espa\u00f1ola se sirve tradicionalmente cortada en porciones, generalmente acompa\u00f1ada de una ensalada o pan.",
+                        "usage": {
+                            "response_token/s": 12.07,
+                            "prompt_token/s": 182.2,
+                            "total_duration": 58574064933,
+                            "load_duration": 1496356467,
+                            "prompt_eval_count": 61,
+                            "prompt_tokens": 61,
+                            "prompt_eval_duration": 334803962,
+                            "eval_count": 685,
+                            "completion_tokens": 685,
+                            "eval_duration": 56742052746,
+                            "approximate_total": "0h0m58s",
+                            "total_tokens": 746,
+                            "completion_tokens_details": {
+                                "reasoning_tokens": 0,
+                                "accepted_prediction_tokens": 0,
+                                "rejected_prediction_tokens": 0
+                            }
+                        },
+                        "done": true
+                    }
+                },
+                "currentId": "e61e94bf-29cb-4968-a48a-6dcce37e3567"
+            },
+            "messages": [
+                {
+                    "id": "dbc2cc60-f609-4503-bccf-089c2238f265",
+                    "parentId": null,
+                    "childrenIds": [
+                        "e61e94bf-29cb-4968-a48a-6dcce37e3567"
+                    ],
+                    "role": "user",
+                    "content": "\u00bfcual es la formula culinaria de la tortilla espa\u00f1ola?",
+                    "timestamp": 1755026511,
+                    "models": [
+                        "granite3.3:8b"
+                    ]
+                },
+                {
+                    "parentId": "dbc2cc60-f609-4503-bccf-089c2238f265",
+                    "id": "e61e94bf-29cb-4968-a48a-6dcce37e3567",
+                    "childrenIds": [],
+                    "role": "assistant",
+                    "content": "La receta t\u00edpica de la Tortilla Espa\u00f1ola incluye los siguientes ingredientes:\n\n- 6-8 patatas medianas o 1 kg de patatas peque\u00f1as\n- Aceite de oliva (para fre\u00edr)\n- Sal\n- 6-8 huevos grandes\n\nAqu\u00ed est\u00e1 el proceso de preparaci\u00f3n paso a paso:\n\n1. Pela las patatas y c\u00fabselas en rodajas finas (de aproximadamente 3 mm).\n2. Calienta aceite de oliva virgen extra en una sart\u00e9n grande a fuego medio-bajo. A\u00f1ade las patatas y sazona con sal. Cocina lentamente, revolviendo ocasionalmente durante unos 15-20 minutos hasta que est\u00e9n suaves pero no doradas. Las patatas deben quedar tiernas pero mantener su forma.\n3. Retira la sart\u00e9n del fuego y d\u00e9jalas en un lado para evitar que las patatas contin\u00faen cocin\u00e1ndose con el exceso de calor. Deja que se templen un poco.\n4. En un taz\u00f3n grande, batir los huevos con un pizco de sal. A\u00f1ade las patatas cocidas y mezcla suavemente para combinar bien.\n5. Limpia la misma sart\u00e9n utilizada para fre\u00edr las patatas, pero esta vez sin a\u00f1adir aceite (solo una ligera resina). Calienta a fuego medio.\n6. Vierte la mezcla de huevo y patata en la sart\u00e9n caliente. Cocina durante unos 4-5 minutos o hasta que los bordes se doren y el centro siga algo l\u00edquido.\n7. Redondea la tortilla con la ayuda de un plato o una tapa del mismo tama\u00f1o que la sart\u00e9n para facilitar su volteo. Coloca un plato grande sobre la sart\u00e9n y, con una mano protegida con un pa\u00f1o o un par de guantes, invierte r\u00e1pidamente la tortilla al plato. Luego, vuelve a colocarla en la sart\u00e9n con el lado sin dorar hacia abajo.\n8. Cocina por el otro lado durante unos 3-4 minutos m\u00e1s, o hasta que est\u00e9 completamente cocida y dorada.\n9. Desgl\u00f3sale suavemente de la sart\u00e9n y transf\u00edrala a un plato. Deja que se enfr\u00ede un poco antes de servir.\n\nLa Tortilla Espa\u00f1ola se sirve tradicionalmente cortada en porciones, generalmente acompa\u00f1ada de una ensalada o pan. \u00a1Disfruta!",
+                    "model": "granite3.3:8b",
+                    "modelName": "granite3.3:8b",
+                    "modelIdx": 0,
+                    "timestamp": 1755026511,
+                    "lastSentence": "Deja que se enfr\u00ede un poco antes de servir. La Tortilla Espa\u00f1ola se sirve tradicionalmente cortada en porciones, generalmente acompa\u00f1ada de una ensalada o pan.",
+                    "usage": {
+                        "response_token/s": 12.07,
+                        "prompt_token/s": 182.2,
+                        "total_duration": 58574064933,
+                        "load_duration": 1496356467,
+                        "prompt_eval_count": 61,
+                        "prompt_tokens": 61,
+                        "prompt_eval_duration": 334803962,
+                        "eval_count": 685,
+                        "completion_tokens": 685,
+                        "eval_duration": 56742052746,
+                        "approximate_total": "0h0m58s",
+                        "total_tokens": 746,
+                        "completion_tokens_details": {
+                            "reasoning_tokens": 0,
+                            "accepted_prediction_tokens": 0,
+                            "rejected_prediction_tokens": 0
+                        }
+                    },
+                    "done": true
+                }
+            ],
+            "tags": [],
+            "timestamp": 1755026511570,
+            "files": []
+        },
+        "updated_at": 1755026570,
+        "created_at": 1755026511,
+        "share_id": null,
+        "archived": false,
+        "pinned": false,
+        "meta": {},
+        "folder_id": null
+    }
+}

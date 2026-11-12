@@ -1,10 +1,10 @@
 {
   "projects": {},
   "targets": {
-    "apati-paseo-perro-pre": {
+    "apptiva-paseo-perro-pre": {
       "hosting": {
-        "apati-paseo-perro": [
-          "apati-paseo-perro-pre"
+        "apptiva-paseo-perro": [
+          "apptiva-paseo-perro-pre"
         ]
       }
     }

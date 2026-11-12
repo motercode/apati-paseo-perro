@@ -1,12 +1,12 @@
 <div align="center">
-  <img src="URL_DEL_LOGO_AQUI" alt="Apati Paseo-Perro Logo" width="150"/>
-  <h1>Apati Paseo-Perro</h1>
+  <img src="URL_DEL_LOGO_AQUI" alt="Apptiva Paseo-Perro Logo" width="150"/>
+  <h1>Apptiva Paseo-Perro</h1>
   <p>Una aplicación sencilla y eficaz para registrar y consultar los paseos del perro familiar, asegurando que todos en casa sepan cuándo fue la última vez que salió.</p>
   
   <!-- Badges -->
   <p>
-    <a href="https://github.com/motercode/apati-paseo-perro/actions/workflows/deploy-web.yml"><img src="https://github.com/motercode/apati-paseo-perro/actions/workflows/deploy-web.yml/badge.svg" alt="Deploy Web"></a>
-    <a href="https://github.com/motercode/apati-paseo-perro/actions/workflows/deploy-android.yml"><img src="https://github.com/motercode/apati-paseo-perro/actions/workflows/deploy-android.yml/badge.svg" alt="Deploy Android"></a>
+    <a href="https://github.com/motercode/apptiva-paseo-perro/actions/workflows/deploy-web.yml"><img src="https://github.com/motercode/apptiva-paseo-perro/actions/workflows/deploy-web.yml/badge.svg" alt="Deploy Web"></a>
+    <a href="https://github.com/motercode/apptiva-paseo-perro/actions/workflows/deploy-android.yml"><img src="https://github.com/motercode/apptiva-paseo-perro/actions/workflows/deploy-android.yml/badge.svg" alt="Deploy Android"></a>
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
   </p>
 </div>
@@ -28,8 +28,8 @@ Para empezar a trabajar en el proyecto, sigue estos pasos:
 
 1.  **Clona el repositorio:**
     ```bash
-    git clone https://github.com/motercode/apati-paseo-perro.git
-    cd apati-paseo-perro
+    git clone https://github.com/motercode/apptiva-paseo-perro.git
+    cd apptiva-paseo-perro
     ```
 
 2.  **Instala las dependencias:**
@@ -87,7 +87,7 @@ Seguimos un flujo de trabajo profesional para asegurar la calidad y la trazabili
 
 El proyecto usa GitHub Actions y Firebase para el despliegue continuo. Cada merge a `main` dispara los despliegues.
 
-*   **Aplicación Web:** **[https://apati-paseo-perro-pre.web.app](https://apati-paseo-perro-pre.web.app)**
+*   **Aplicación Web:** **[https://apptiva-paseo-perro-pre.web.app](https://apptiva-paseo-perro-pre.web.app)**
 *   **Aplicación Android:** Se distribuye al grupo de testers `testers-preproduccion` vía Firebase App Distribution.
 
 ---

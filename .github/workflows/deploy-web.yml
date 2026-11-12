@@ -1,12 +1,49 @@
 name: Deploy Web to Firebase Hosting
 
 on:
-  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
     branches:
       - main
 
 jobs:
+  get_finops_data:
+    runs-on: ubuntu-latest
+    outputs:
+      cost_center: ${{ steps.get_cost_center.outputs.cost_center }}
+      worker_id: 'github-actions'
+      owner_id: ${{ github.actor }}
+      session_id: ${{ github.run_id }}
+    steps:
+      - name: Get PR Issue Number
+        id: get_issue_number
+        uses: actions-ecosystem/action-get-issue-number@v1
+
+      - name: Get Issue Labels
+        id: get_issue_labels
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue = await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: ${{ steps.get_issue_number.outputs.number }}
+            });
+            return issue.data.labels;
+
+      - name: Extract Cost Center
+        id: get_cost_center
+        run: |
+          cost_center_label=$(echo '${{ toJSON(steps.get_issue_labels.outputs.result) }}' | jq -r '.[] | select(.name | startswith("finops:cost-center:")) | .name')
+          if [[ -z "$cost_center_label" ]]; then
+            echo "No cost center label found on the issue."
+            exit 1
+          fi
+          cost_center=$(echo $cost_center_label | cut -d':' -f3)
+          echo "cost_center=$cost_center" >> $GITHUB_OUTPUT
+  
   build_and_deploy:
+    needs: get_finops_data
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -20,16 +57,34 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build web
-        run: flutter build web --release
+      - name: Authenticate with GCP
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_APPTIVA_PASEO_PERRO_PRE }}'
+
+      - name: Get Hosting Site Details
+        id: get_site_details
+        run: |
+          site_details=$(firebase hosting:sites:get apptiva-paseo-perro --project apptiva-paseo-perro-pre --json)
+          bucket_name=$(echo $site_details | jq -r '.defaultUrl' | cut -d'/' -f3)
+          echo "bucket_name=$bucket_name" >> $GITHUB_OUTPUT
+
+      - name: Label Cloud Storage Bucket
+        run: |
+          gcloud storage buckets update gs://${{ steps.get_site_details.outputs.bucket_name }} \
+            --update-labels=cost-center=${{ needs.get_finops_data.outputs.cost_center }},worker-id=${{ needs.get_finops_data.outputs.worker_id }},owner-id=${{ needs.get_finops_data.outputs.owner_id }},session-id=${{ needs.get_finops_data.outputs.session_id }}
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_APATI_PASEO_PERRO_PRE }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_APPTIVA_PASEO_PERRO_PRE }}'
           channelId: live
-          projectId: apati-paseo-perro-pre
-          target: apati-paseo-perro # El target de hosting que configuraremos
+          projectId: apptiva-paseo-perro-pre
+          target: apptiva-paseo-perro # El target de hosting que configuraremos
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
+          COST_CENTER: ${{ needs.get_finops_data.outputs.cost_center }}
+          WORKER_ID: ${{ needs.get_finops_data.outputs.worker_id }}
+          OWNER_ID: ${{ needs.get_finops_data.outputs.owner_id }}
+          SESSION_ID: ${{ needs.get_finops_data.outputs.session_id }}

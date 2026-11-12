@@ -1,6 +1,6 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:apati_paseo_perro/features/walks/domain/models/walk_model.dart';
+import 'package:apptiva_paseo_perro/features/walks/domain/models/walk_model.dart';
 
 class DatabaseService {
   Database? _database;

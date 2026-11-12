@@ -1,12 +1,49 @@
 name: Deploy Android to Firebase App Distribution
 
 on:
-  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
     branches:
       - main
 
 jobs:
+  get_finops_data:
+    runs-on: ubuntu-latest
+    outputs:
+      cost_center: ${{ steps.get_cost_center.outputs.cost_center }}
+      worker_id: 'github-actions'
+      owner_id: ${{ github.actor }}
+      session_id: ${{ github.run_id }}
+    steps:
+      - name: Get PR Issue Number
+        id: get_issue_number
+        uses: actions-ecosystem/action-get-issue-number@v1
+
+      - name: Get Issue Labels
+        id: get_issue_labels
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue = await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: ${{ steps.get_issue_number.outputs.number }}
+            });
+            return issue.data.labels;
+
+      - name: Extract Cost Center
+        id: get_cost_center
+        run: |
+          cost_center_label=$(echo '${{ toJSON(steps.get_issue_labels.outputs.result) }}' | jq -r '.[] | select(.name | startswith("finops:cost-center:")) | .name')
+          if [[ -z "$cost_center_label" ]]; then
+            echo "No cost center label found on the issue."
+            exit 1
+          fi
+          cost_center=$(echo $cost_center_label | cut -d':' -f3)
+          echo "cost_center=$cost_center" >> $GITHUB_OUTPUT
+
   build_and_deploy:
+    needs: get_finops_data
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -28,6 +65,23 @@ jobs:
 
       - name: Build APK
         run: flutter build apk --release
+
+      - name: Authenticate with GCP
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_APPTIVA_PASEO_PERRO_PRE }}'
+
+      - name: Get App Distribution Bucket
+        id: get_bucket
+        run: |
+          # Heuristic: App Distribution often uses a bucket with a similar name to the project ID
+          bucket_name="gs://${{ secrets.FIREBASE_PROJECT_ID }}.appspot.com"
+          echo "bucket_name=$bucket_name" >> $GITHUB_OUTPUT
+
+      - name: Label Cloud Storage Bucket
+        run: |
+          gcloud storage buckets update ${{ steps.get_bucket.outputs.bucket_name }} \
+            --update-labels=cost-center=${{ needs.get_finops_data.outputs.cost_center }},worker-id=${{ needs.get_finops_data.outputs.worker_id }},owner-id=${{ needs.get_finops_data.outputs.owner_id }},session-id=${{ needs.get_finops_data.outputs.session_id }}
 
       - name: Deploy to Firebase App Distribution (via CLI)
         run: |

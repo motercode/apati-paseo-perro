@@ -1,6 +1,6 @@
 {
-    "name": "apati_paseo_perro",
-    "short_name": "apati_paseo_perro",
+    "name": "apptiva_paseo_perro",
+    "short_name": "apptiva_paseo_perro",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
